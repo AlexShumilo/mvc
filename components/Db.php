@@ -2,7 +2,7 @@
 
 class Db
 {
-    protected $connection = NULL;
+    protected $connection;
 
     public function __construct()
     {
@@ -16,8 +16,9 @@ class Db
             $dbParams = include($paramsPath);
 
             if (!$this->connection) {
-                return new PDO("mysql:host={$dbParams['host']}; dbname={$dbParams['dbName']}",
+                $this->connection = new PDO("mysql:host={$dbParams['host']}; dbname={$dbParams['dbName']}",
                     $dbParams['user'], $dbParams['password'], [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+                return $this->connection;
             } else {
                 return $this->connection;
             }

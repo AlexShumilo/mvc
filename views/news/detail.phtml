@@ -1,0 +1,223 @@
+<div class="main-content-inner content-width">
+
+
+    <!-- Main Column / Sidebar -->
+
+    <div class="column-container">
+
+        <!-- Main Column -->
+
+        <div class="column-three-qtr">
+
+            <!-- Blog Post -->
+
+            <div class="blog-post actual-post">
+                <!-- Title -->
+                <h1><?= $this->detailNews['news_title']?></h1>
+                <!-- Meta -->
+                <div class="blog-meta">
+                    <div class="meta-item">
+                        <div class="meta-title published">Дата:</div>
+                        <a href="#"><? $new_datetime = DateTime::createFromFormat ( "Y-m-d H:i:s", $this->detailNews['news_date']);
+                            echo $new_datetime->format('d F Y'); ?></a></div>
+                    <div class="meta-item">
+                        <div class="meta-title views">Просмотры:</div>
+                        <a href="#"><?= $this->detailNews['news_views']?></a></div>
+                </div>
+
+                <!-- Content -->
+
+                <div class="blog-content">
+                    <!-- Paragraph -->
+                    <p><?= $this->detailNews['news_short_content']?></p>
+
+                    <div class="media">
+                        <div id="portfolio-blog-slider-container">
+
+                            <div id="portfolio-blog-slider">
+
+                                <!-- Actual Images -->
+
+                                <img alt="" src="images\placeholders\preview11.jpg" class="fullwidth">
+                                <img alt="" src="images\placeholders\preview12.jpg" class="fullwidth">
+
+                                <!-- END Actual Images -->
+
+                            </div>
+
+                            <!-- Slide Controls -->
+
+                            <div class="portfolio-blog-slider-controls">
+                                <div id="portfolio-blog-slider-prev"></div>
+                                <div id="portfolio-blog-slider-next"></div>
+                            </div>
+
+                            <!-- END Slide Controls -->
+                        </div>
+                    </div>
+                    <!-- END Image -->
+
+                    <!-- H3 Title -->
+                    <h3><?= $this->detailNews['news_short_content']?></h3>
+                    <!-- Paragraph -->
+                    <p><?= $this->detailNews['news_content']?></p>
+                </div>
+
+                <!-- END Content -->
+            </div>
+
+            <!-- END Blog Post -->
+
+            <!-- Share Links -->
+            <ul class="post-sharing">
+                <li><a href="#"><i class="fa fa-facebook"></i>
+                        <div class="tooltip">Поделиться в Facebook</div>
+                    </a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i>
+                        <div class="tooltip">Поделиться в Twitter</div>
+                    </a></li>
+                <li><a href="#"><i class="fa fa-linkedin-square"></i>
+                        <div class="tooltip">Поделиться в LinkedIn</div>
+                    </a></li>
+                <li><a href="#"><i class="fa fa-pinterest"></i>
+                        <div class="tooltip">Поделиться в Pinterest</div>
+                    </a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i>
+                        <div class="tooltip">Поделиться в Google+</div>
+                    </a></li>
+            </ul>
+            <!-- END Share Links -->
+
+            <!-- Divider -->
+            <div class="divider"></div>
+            <!-- END Divider -->
+
+            <!-- Reader Comments -->
+            <div class="comments">
+                <h2>Комментарии к статье</h2>
+
+                <!-- Comment -->
+                <? foreach ($this->newsComments as $comment) : ?>
+                <div class="comment">
+                    <!-- Username -->
+                    <div class="username">
+                        <a href="#"><?= $comment['user_name']?></a> пишет:
+                    </div>
+                    <!-- Date -->
+                    <div class="date">
+                        <? $new_datetime = DateTime::createFromFormat ( "Y-m-d H:i:s", $comment['comment_date']);
+                        echo $new_datetime->format('d F Y');
+                        ?>
+                    </div>
+                    <!-- Message -->
+                    <div class="message">
+                        <p><?= $comment['comment_text']?></p>
+                    </div>
+                    <!-- Reply Link -->
+                    <div class="link">
+                        <a href="#">Ответить</a>
+                    </div>
+                </div>
+                <? endforeach; ?>
+
+                <!-- END Comment -->
+            </div>
+
+            <!-- END Reader Comments -->
+
+            <!-- Divider -->
+            <div class="divider"></div>
+            <!-- END Divider -->
+
+            <!-- Post Comment Form -->
+
+            <div class="comment-form">
+                <h2>Оставить комментарий</h2>
+                <form id="comment-form" name="comment-form" method="post" action="/comment">
+                    <!-- Textbox -->
+                    <input type="text" name="name" placeholder="Имя *" required>
+                    <!-- Textbox -->
+                    <input type="text" name="email" placeholder="Email *" required>
+                    <!-- Textbox -->
+                    <input type="text" name="theme" placeholder="Тема *" required>
+                    <!-- Comment box -->
+                    <textarea name="comment" placeholder="Сообщение *" required></textarea>
+                    <input type="hidden" name="news_id" value="<?= $this->detailNews['news_id'] ?>">
+                    <!-- Submit Button -->
+                    <input type="submit" name="submit" class="accent" value="Готово">
+                </form>
+            </div>
+
+            <!-- END Post Comment Form -->
+        </div>
+
+        <!-- END Main Column -->
+
+        <!-- Sidebar -->
+        <div class="column-one-fourth sidebar">
+
+            <!-- Categories -->
+
+            <div class="sidebar-widget categories">
+                <!-- Title -->
+                <h3>Категории новостей</h3>
+                <!-- Category Links -->
+                <a href="/news/sport">Спорт</a>
+                <a href="/news/it">IT технологии</a>
+            </div>
+
+            <!-- END Categories -->
+
+
+            <!-- Search -->
+            <!-- END Search -->
+
+            <!-- Latest Project -->
+
+            <div class="sidebar-widget project">
+                <!-- Title -->
+                <h3>Новость дня</h3>
+                <!-- Image -->
+                <a href="#" class="image-link"><img alt="" src="images\placeholders\preview4.jpg" class="fullwidth"></a>
+                <!-- Project Title -->
+                <h3 class="sub-title"><a href="#">Заголовок новости</a></h3>
+                <!-- Tags -->
+                <div class="tags">Категория</div>
+            </div>
+
+            <!-- END Latest Project -->
+
+            <!-- Popular Posts -->
+
+            <div class="sidebar-widget posts">
+                <!-- Title -->
+                <h3>Последнее</h3>
+
+                <!-- Post -->
+                <? foreach ($this->lastNews as $news) :?>
+                    <div class="post">
+                        <!-- Image Column -->
+                        <div class="img-column">
+                            <a href="/news/detail/<?= $news['news_id']?>/" class="image-link mini"><img alt="" src="images\placeholders\preview9-mini.jpg" class="fullwidth"></a>
+                        </div>
+                        <!-- Content Column -->
+                        <div class="content-column">
+                            <!-- Post Title -->
+                            <h3 class="sub-title"><a href="/news/detail/<?= $news['news_id']?>/"><?= $news['news_title']?></a></h3>
+                            <!-- Date -->
+                            <div class="date"><? $new_datetime = DateTime::createFromFormat ( "Y-m-d H:i:s", $news['news_date']);
+                                echo $new_datetime->format('d F Y'); ?></div>
+                        </div>
+                    </div>
+                <? endforeach; ?>
+
+                <!-- END Post -->
+            </div>
+            <!-- END Popular Posts -->
+        </div>
+        <!-- END Sidebar -->
+    </div>
+    <!-- END Main Column / Sidebar -->
+
+</div>
+<!-- END Main Content -->

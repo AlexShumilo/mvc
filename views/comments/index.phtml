@@ -1,0 +1,59 @@
+<div class="main-content-inner content-width">
+    <div class="column-container">
+
+
+        <!-- Main Column -->
+
+        <div class="column-three-qtr">
+            <p>
+                <? if ($this->result == true) : ?>
+                Ваш комментарий успешно отправлен!
+                    <a href="/news/detail/<?=  $this->newsId ?>/">Вернуться к новости</a>
+                <? else : ?>
+                Повторите отправку комментария с корректными данными!
+                    <a href="/news/detail/<?=  $this->newsId ?>/">Вернуться к новости</a>
+                <? endif ?>
+            </p>
+        </div>
+
+        <div class="column-one-fourth sidebar">
+
+            <!-- Categories -->
+
+            <div class="sidebar-widget categories">
+                <!-- Title -->
+                <h3>Категории новостей</h3>
+                <!-- Category Links -->
+                <a href="/news/sport">Спорт</a>
+                <a href="/news/it">IT технологии</a>
+            </div>
+
+            <!-- END Categories -->
+
+            <!-- Search -->
+
+            <!-- END Search -->
+
+            <!-- Latest Project -->
+
+            <div class="sidebar-widget project">
+                <!-- Title -->
+                <h3>Новость дня</h3>
+                <!-- Image -->
+                <a href="#" class="image-link"><img alt="" src="images\placeholders\preview4.jpg" class="fullwidth"></a>
+                <!-- Project Title -->
+                <h3 class="sub-title"><a href="#">Заголовок новости</a></h3>
+                <!-- Tags -->
+                <div class="tags">Категория</div>
+            </div>
+
+            <!-- END Latest Project -->
+
+            <!-- Popular Posts -->
+
+            <!-- END Popular Posts -->
+
+
+        </div>
+    </div>
+</div>
