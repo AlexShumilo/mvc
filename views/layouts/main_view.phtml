@@ -66,19 +66,17 @@
 
             <!-- One Fourth -->
             <? foreach ($this->topNews as $news) :?>
-            <li class="column-one-fourth portfolio-item branding">
+                <li class="column-one-fourth portfolio-item branding">
                 <!-- Image -->
-                <a href="/news/detail/<?= $news['news_id']?>" class="image-link"><img alt="" src="\template\images\placeholders\preview1.jpg" class="fullwidth">
-                </a>
+                    <a href="/news/<?= $news['cat_code']?>/<?= $news['news_id']?>" class="image-link"><img alt="" src="<?= $news['news_preview']?>" class="fullwidth">
+                    </a>
                 <!-- Title -->
-                <h3><a href="/news/detail/<?= $news['news_id']?>"><?= $news['news_title'] ?></a></h3>
+                    <h3><a href="/news/detail/<?= $news['news_id']?>"><?= $news['news_title'] ?></a></h3>
                 <!-- Tags -->
-                <div class="tags"><?= $news['cat_name'] ?></div>
-            </li>
+                    <div class="tags"><?= $news['cat_name'] ?></div>
+                </li>
             <? endforeach; ?>
-
             <!-- END One Fourth -->
-
         </ul>
     </div>
 
@@ -96,28 +94,24 @@
 
                     <!-- One Fourth -->
                     <? foreach ($this->lastNews as $news) :?>
-                    <li class="column-one-fourth">
+                        <li class="column-one-fourth">
                         <!-- Image -->
-                        <a href="/news/detail/<?= $news['news_id']?>/" class="image-link"><img alt="" src="\template\images\placeholders\preview9.jpg"
-                                                                         class="fullwidth">
-                        </a>
+                            <a href="/news/<?= $news['cat_code']?>/<?= $news['news_id']?>" class="image-link"><img alt="" src="<?= $news['news_preview']?>" class="fullwidth"></a>
                         <!-- Title -->
-                        <h3><a href="/news/detail/<?= $news['news_id']?>/"><?= $news['news_title'] ?></a></h3>
+                            <h3><a href="/news/<?= $news['cat_code']?>/<?= $news['news_id']?>"><?= $news['news_title'] ?></a></h3>
                         <!-- Date -->
-                        <div class="date"><? $new_datetime = DateTime::createFromFormat ( "Y-m-d H:i:s", $news['news_date']);
-                            echo $new_datetime->format('d F Y') ?></div>
+                            <div class="date"><? $new_datetime = DateTime::createFromFormat ( "Y-m-d H:i:s", $news['news_date']);
+                                echo $new_datetime->format('d F Y'); ?></div>
                         <!-- Excerpt -->
-                        <p><?= $news['news_short_content'] ?></p>
+                            <p><?= $news['news_short_content'] ?></p>
                         <!-- Read More Link -->
-                        <a href="/news/detail/<?= $news['news_id']?>/">Подробнее</a>
-                    </li>
+                            <a href="/news/<?= $news['cat_code']?>/<?= $news['news_id']?>">Подробнее</a>
+                        </li>
                     <? endforeach; ?>
 
                     <!-- END One Fourth -->
-
                 </ul>
             </div>
-
         </div>
 
         <div class="column-one-fourth">
@@ -134,9 +128,7 @@
             <div class="carousel">
                 <ul id="testimonials-carousel" class="slider-container">
 
-
                     <!-- Testimonial 1 -->
-
                     <li class="column-one-fourth">
                         <!-- Text -->
                         <div class="testimonial-text">
@@ -152,12 +144,8 @@
                             <a href="#">Посетитель</a>
                         </div>
                     </li>
-
                     <!-- END Testimonial 1 -->
-
-
                     <!-- Testimonial 2 -->
-
                     <li class="column-one-fourth">
                         <!-- Text -->
                         <div class="testimonial-text">
@@ -173,15 +161,10 @@
                             <a href="#">Посетитель</a>
                         </div>
                     </li>
-
                     <!-- END Testimonial 2 -->
-
 
                 </ul>
             </div>
-
         </div>
-
     </div>
-
 </div>

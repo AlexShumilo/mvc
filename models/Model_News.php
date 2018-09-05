@@ -7,14 +7,14 @@ class Model_News extends Db {
     }
 
 
-    public function getNewsList() {                                           // для получения всех новостей
-        $result = $this->connection->query("SELECT * FROM news ORDER BY news_date DESC LIMIT 10");
+    public function getNewsList() {                                           // для получения всех новостей (используем таблицу category для получения названия категории и подставления в ссылку для ЧПУ)
+        $result = $this->connection->query("SELECT * FROM news LEFT JOIN category ON news.news_cat_id = category.cat_id ORDER BY news_date DESC LIMIT 10");
 
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getLastNews($count = 3) {                                 // получение последних новостей
-        $sql = $this->connection->prepare("SELECT * FROM news ORDER BY news_date LIMIT :count");
+        $sql = $this->connection->prepare("SELECT * FROM news LEFT JOIN category ON news.news_cat_id = category.cat_id ORDER BY news_date LIMIT :count");
         $sql->bindParam(':count', $count, PDO::PARAM_INT);
         $sql->execute();
 
@@ -55,7 +55,7 @@ class Model_News extends Db {
     }
 
     public function getNewsComments($newsId) {
-        $sql = $this->connection->prepare("SELECT * FROM comments LEFT JOIN news ON comments.news_id = news.news_id WHERE comments.news_id = :newsId ORDER BY comment_date");
+        $sql = $this->connection->prepare("SELECT * FROM comments WHERE comments.news_id = :newsId");
         $sql->bindParam(':newsId', $newsId, PDO::PARAM_INT);
         $sql->execute();
 

@@ -1,89 +1,74 @@
 <div class="main-content-inner content-width">
 
-
     <!-- Main Column / Sidebar -->
-
     <div class="column-container">
-
 
         <!-- Main Column -->
 
         <div class="column-three-qtr">
 
-
             <!-- Blog Post -->
             <? foreach ($this->news as $news) : ?>
 
                 <div class="blog-post">
-                <!-- Title -->
-                <h1><a href="/news/detail/<?= $news['news_id']?>/"><?= $news['news_title'] ?></a></h1>
-                <!-- Meta -->
-                <div class="blog-meta">
-                    <div class="meta-item">
-                        <div class="meta-title published">Дата:</div>
-                        <a href="#">
+                    <!-- Title -->
+                    <h1><a href="/news/<?= $news['cat_code']?>/<?= $news['news_id']?>"><?= $news['news_title'] ?></a></h1>
+                    <!-- Meta -->
+                    <div class="blog-meta">
+                        <div class="meta-item">
+                            <div class="meta-title published">Дата:</div>
+                            <a href="#">
                             <? $new_datetime = DateTime::createFromFormat ( "Y-m-d H:i:s", $news['news_date']);
-                            echo $new_datetime->format('d F Y') ?>
-                        </a>
+                            echo $new_datetime->format('d F Y'); ?>
+                            </a>
+                        </div>
+                        <div class="meta-item"><div class="meta-title views">Просмотры:</div><a href="#"><?= $news['news_views']?></a></div>
                     </div>
-                    <div class="meta-item"><div class="meta-title views">Просмотры:</div><a href="#"><?= $news['news_views']?></a></div>
-                </div>
                 <!-- Image -->
-                <a href="/news/detail/<?= $news['news_id']?>/" class="media image-link"><img alt="" src="images\placeholders\preview9.jpg" class="fullwidth"></a>
+                    <a href="/news/detail/<?= $news['news_id']?>/" class="media image-link"><img alt="" src="<?= $news['news_preview']?>" class="fullwidth"></a>
                 <!-- Excerpt -->
-                <div class="blog-content">
-                    <p><?= $news['news_short_content'] ?></p>
+                    <div class="blog-content">
+                        <p><?= $news['news_short_content'] ?></p>
                     <!-- Read More Button -->
-                    <a href="/news/detail/<?= $news['news_id']?>/" class="button accent">Читать далее</a>
+                        <a href="/news/detail/<?= $news['news_id']?>/" class="button accent">Читать далее</a>
+                    </div>
                 </div>
-            </div>
 
             <? endforeach; ?>
             <!-- END Blog Post -->
 
-
             <!-- Navigation -->
-
 
             <div class="blog-nav">
                 <a href="#" class="back">Назад</a>
                 <a href="#" class="next">Вперед</a>
             </div>
-
-
             <!-- END Navigation -->
-
-
         </div>
 
         <!-- END Main Column -->
 
-
-
         <!-- Sidebar -->
 
         <div class="column-one-fourth sidebar">
-
-
             <!-- Categories -->
 
             <div class="sidebar-widget categories">
                 <!-- Title -->
                 <h3>Категории новостей</h3>
                 <!-- Category Links -->
-                <a href="/news/sport">Спорт</a>
-                <a href="/news/it">IT технологии</a>
+                <? foreach ($this->categories as $category) : ?>
+
+                    <a href="/news/<?= $category['cat_code']?>"><?= $category['cat_name']?></a>
+
+                <? endforeach; ?>
             </div>
 
             <!-- END Categories -->
 
-
-
             <!-- Search -->
 
             <!-- END Search -->
-
-
 
             <!-- Latest Project -->
 
@@ -100,26 +85,23 @@
 
             <!-- END Latest Project -->
 
-
-
             <!-- Popular Posts -->
 
             <div class="sidebar-widget posts">
                 <!-- Title -->
                 <h3>Последнее</h3>
 
-
                 <!-- Post -->
                 <? foreach ($this->lastNews as $news) :?>
                     <div class="post">
                         <!-- Image Column -->
                         <div class="img-column">
-                            <a href="/news/detail/<?= $news['news_id']?>/" class="image-link mini"><img alt="" src="images\placeholders\preview9-mini.jpg" class="fullwidth"></a>
+                            <a href="/news/<?= $news['cat_code']?>/<?= $news['news_id']?>" class="image-link mini"><img alt="" src="<?= $news['news_preview']?>" class="fullwidth"></a>
                         </div>
                         <!-- Content Column -->
                         <div class="content-column">
                             <!-- Post Title -->
-                            <h3 class="sub-title"><a href="/news/detail/<?= $news['news_id']?>/"><?= $news['news_title']?></a></h3>
+                            <h3 class="sub-title"><a href="/news/<?= $news['cat_code']?>/<?= $news['news_id']?>"><?= $news['news_title']?></a></h3>
                             <!-- Date -->
                             <div class="date"><? $new_datetime = DateTime::createFromFormat ( "Y-m-d H:i:s", $news['news_date']);
                                 echo $new_datetime->format('d F Y') ?></div>
@@ -128,23 +110,11 @@
                 <? endforeach; ?>
 
                 <!-- END Post -->
-
-
-
             </div>
-
             <!-- END Popular Posts -->
-
-
         </div>
-
         <!-- END Sidebar -->
-
-
     </div>
-
     <!-- END Main Column / Sidebar -->
-
-
 </div>
 

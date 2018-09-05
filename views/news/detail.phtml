@@ -1,7 +1,6 @@
 <div class="main-content-inner content-width">
 
-
-    <!-- Main Column / Sidebar -->
+     <!-- Main Column / Sidebar -->
 
     <div class="column-container">
 
@@ -19,10 +18,12 @@
                     <div class="meta-item">
                         <div class="meta-title published">Дата:</div>
                         <a href="#"><? $new_datetime = DateTime::createFromFormat ( "Y-m-d H:i:s", $this->detailNews['news_date']);
-                            echo $new_datetime->format('d F Y'); ?></a></div>
+                            echo $new_datetime->format('d F Y'); ?></a>
+                    </div>
                     <div class="meta-item">
                         <div class="meta-title views">Просмотры:</div>
-                        <a href="#"><?= $this->detailNews['news_views']?></a></div>
+                        <a href="#"><?= $this->detailNews['news_views']?></a>
+                    </div>
                 </div>
 
                 <!-- Content -->
@@ -32,28 +33,12 @@
                     <p><?= $this->detailNews['news_short_content']?></p>
 
                     <div class="media">
-                        <div id="portfolio-blog-slider-container">
-
-                            <div id="portfolio-blog-slider">
 
                                 <!-- Actual Images -->
 
-                                <img alt="" src="images\placeholders\preview11.jpg" class="fullwidth">
-                                <img alt="" src="images\placeholders\preview12.jpg" class="fullwidth">
+                                <img alt="" src="<?= $this->detailNews['news_preview']?>" class="fullwidth">
 
                                 <!-- END Actual Images -->
-
-                            </div>
-
-                            <!-- Slide Controls -->
-
-                            <div class="portfolio-blog-slider-controls">
-                                <div id="portfolio-blog-slider-prev"></div>
-                                <div id="portfolio-blog-slider-next"></div>
-                            </div>
-
-                            <!-- END Slide Controls -->
-                        </div>
                     </div>
                     <!-- END Image -->
 
@@ -98,26 +83,25 @@
 
                 <!-- Comment -->
                 <? foreach ($this->newsComments as $comment) : ?>
-                <div class="comment">
-                    <!-- Username -->
-                    <div class="username">
-                        <a href="#"><?= $comment['user_name']?></a> пишет:
+                    <div class="comment">
+                        <!-- Username -->
+                        <div class="username">
+                            <a href="#"><?= $comment['user_name']?></a> пишет:
+                        </div>
+                        <!-- Date -->
+                        <div class="date">
+                            <? $new_datetime = DateTime::createFromFormat ( "Y-m-d H:i:s", $comment['comment_date']);
+                            echo $new_datetime->format('d F Y'); ?>
+                        </div>
+                        <!-- Message -->
+                        <div class="message">
+                            <p><?= $comment['comment_text']?></p>
+                        </div>
+                        <!-- Reply Link -->
+                        <div class="link">
+                            <a href="#">Ответить</a>
+                        </div>
                     </div>
-                    <!-- Date -->
-                    <div class="date">
-                        <? $new_datetime = DateTime::createFromFormat ( "Y-m-d H:i:s", $comment['comment_date']);
-                        echo $new_datetime->format('d F Y');
-                        ?>
-                    </div>
-                    <!-- Message -->
-                    <div class="message">
-                        <p><?= $comment['comment_text']?></p>
-                    </div>
-                    <!-- Reply Link -->
-                    <div class="link">
-                        <a href="#">Ответить</a>
-                    </div>
-                </div>
                 <? endforeach; ?>
 
                 <!-- END Comment -->
@@ -162,8 +146,11 @@
                 <!-- Title -->
                 <h3>Категории новостей</h3>
                 <!-- Category Links -->
-                <a href="/news/sport">Спорт</a>
-                <a href="/news/it">IT технологии</a>
+                <? foreach ($this->categories as $category) : ?>
+
+                    <a href="/news/<?= $category['cat_code']?>"><?= $category['cat_name']?></a>
+
+                <? endforeach; ?>
             </div>
 
             <!-- END Categories -->
@@ -198,12 +185,12 @@
                     <div class="post">
                         <!-- Image Column -->
                         <div class="img-column">
-                            <a href="/news/detail/<?= $news['news_id']?>/" class="image-link mini"><img alt="" src="images\placeholders\preview9-mini.jpg" class="fullwidth"></a>
+                            <a href="/news/<?= $news['cat_code']?>/<?= $news['news_id']?>" class="image-link mini"><img alt="" src="<?= $news['news_preview']?>" class="fullwidth"></a>
                         </div>
                         <!-- Content Column -->
                         <div class="content-column">
                             <!-- Post Title -->
-                            <h3 class="sub-title"><a href="/news/detail/<?= $news['news_id']?>/"><?= $news['news_title']?></a></h3>
+                            <h3 class="sub-title"><a href="/news/<?= $news['cat_code']?>/<?= $news['news_id']?>"><?= $news['news_title']?></a></h3>
                             <!-- Date -->
                             <div class="date"><? $new_datetime = DateTime::createFromFormat ( "Y-m-d H:i:s", $news['news_date']);
                                 echo $new_datetime->format('d F Y'); ?></div>
