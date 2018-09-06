@@ -40,6 +40,7 @@ class CommentsController extends Controller {
             }
             $this->view->result = $result;
             $this->view->newsCode = $_POST['news_code'];                    // устанавливаем переменную для использования в ссылке
+            $this->view->categoryCode = $_POST['cat_code'];
 
             $this->view->generate('template_view.phtml', 'comments/index.phtml'); // формируем вьюшку
 

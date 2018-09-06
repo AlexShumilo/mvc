@@ -41,7 +41,7 @@ class Model_News extends Db {
     }
 
     public function getNewsByCode($newsCode) {                                   // получение отдельной новости по id
-        $sql = $this->connection->prepare("SELECT * FROM news WHERE news_code = :newsCode");
+        $sql = $this->connection->prepare("SELECT * FROM news LEFT JOIN category ON news.news_cat_id = category.cat_id WHERE news_code = :newsCode");
         $sql->bindParam(':newsCode', $newsCode, PDO::PARAM_STR);
         $sql->execute();
 

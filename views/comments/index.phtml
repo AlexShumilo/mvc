@@ -8,10 +8,10 @@
             <p>
                 <? if ($this->result == true) : ?>
                 Ваш комментарий успешно отправлен!
-                    <a href="/news/detail/<?=  $this->newsCode ?>/">Вернуться к новости</a>
+                    <a href="/news/<?=  $this->categoryCode ?>/<?=  $this->newsCode ?>">Вернуться к новости</a>
                 <? else : ?>
                 Повторите отправку комментария с корректными данными!
-                    <a href="/news/detail/<?=  $this->newsCode ?>/">Вернуться к новости</a>
+                    <a href="/news/<?=  $this->categoryCode ?>/<?=  $this->newsCode ?>">Вернуться к новости</a>
                 <? endif ?>
             </p>
         </div>
