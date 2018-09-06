@@ -18,8 +18,9 @@
                         <div class="meta-item">
                             <div class="meta-title published">Дата:</div>
                             <a href="#">
-                            <? $new_datetime = DateTime::createFromFormat ( "Y-m-d H:i:s", $news['news_date']);
-                            echo $new_datetime->format('d F Y'); ?>
+                            <? $this->getRusDate($news['news_date']); // $new_datetime = DateTime::createFromFormat ( "Y-m-d H:i:s", $news['news_date']);
+                            //echo $new_datetime->format('d F Y');
+                            ?>
                             </a>
                         </div>
                         <div class="meta-item"><div class="meta-title views">Просмотры:</div><a href="#"><?= $news['news_views']?></a></div>
@@ -103,8 +104,8 @@
                             <!-- Post Title -->
                             <h3 class="sub-title"><a href="/news/<?= $news['cat_code']?>/<?= $news['news_code']?>"><?= $news['news_title']?></a></h3>
                             <!-- Date -->
-                            <div class="date"><? $new_datetime = DateTime::createFromFormat ( "Y-m-d H:i:s", $news['news_date']);
-                                echo $new_datetime->format('d F Y') ?></div>
+                            <div class="date"><? $this->getRusDate($news['news_date']); //$new_datetime = DateTime::createFromFormat ( "Y-m-d H:i:s", $news['news_date']);
+                                //echo $new_datetime->format('d F Y') ?></div>
                         </div>
                     </div>
                 <? endforeach; ?>
