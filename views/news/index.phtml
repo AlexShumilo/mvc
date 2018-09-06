@@ -12,7 +12,7 @@
 
                 <div class="blog-post">
                     <!-- Title -->
-                    <h1><a href="/news/<?= $news['cat_code']?>/<?= $news['news_id']?>"><?= $news['news_title'] ?></a></h1>
+                    <h1><a href="/news/<?= $news['cat_code']?>/<?= $news['news_code']?>"><?= $news['news_title'] ?></a></h1>
                     <!-- Meta -->
                     <div class="blog-meta">
                         <div class="meta-item">
@@ -25,12 +25,12 @@
                         <div class="meta-item"><div class="meta-title views">Просмотры:</div><a href="#"><?= $news['news_views']?></a></div>
                     </div>
                 <!-- Image -->
-                    <a href="/news/detail/<?= $news['news_id']?>/" class="media image-link"><img alt="" src="<?= $news['news_preview']?>" class="fullwidth"></a>
+                    <a href="/news/<?= $news['cat_code']?>/<?= $news['news_code']?>/" class="media image-link"><img alt="" src="<?= $news['news_preview']?>" class="fullwidth"></a>
                 <!-- Excerpt -->
                     <div class="blog-content">
                         <p><?= $news['news_short_content'] ?></p>
                     <!-- Read More Button -->
-                        <a href="/news/detail/<?= $news['news_id']?>/" class="button accent">Читать далее</a>
+                        <a href="/news/<?= $news['cat_code']?>/<?= $news['news_code']?>/" class="button accent">Читать далее</a>
                     </div>
                 </div>
 
@@ -96,12 +96,12 @@
                     <div class="post">
                         <!-- Image Column -->
                         <div class="img-column">
-                            <a href="/news/<?= $news['cat_code']?>/<?= $news['news_id']?>" class="image-link mini"><img alt="" src="<?= $news['news_preview']?>" class="fullwidth"></a>
+                            <a href="/news/<?= $news['cat_code']?>/<?= $news['news_code']?>" class="image-link mini"><img alt="" src="<?= $news['news_preview']?>" class="fullwidth"></a>
                         </div>
                         <!-- Content Column -->
                         <div class="content-column">
                             <!-- Post Title -->
-                            <h3 class="sub-title"><a href="/news/<?= $news['cat_code']?>/<?= $news['news_id']?>"><?= $news['news_title']?></a></h3>
+                            <h3 class="sub-title"><a href="/news/<?= $news['cat_code']?>/<?= $news['news_code']?>"><?= $news['news_title']?></a></h3>
                             <!-- Date -->
                             <div class="date"><? $new_datetime = DateTime::createFromFormat ( "Y-m-d H:i:s", $news['news_date']);
                                 echo $new_datetime->format('d F Y') ?></div>

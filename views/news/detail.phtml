@@ -126,6 +126,7 @@
                     <input type="text" name="theme" placeholder="Тема *" required>
                     <!-- Comment box -->
                     <textarea name="comment" placeholder="Сообщение *" required></textarea>
+                    <input type="hidden" name="news_code" value="<?= $this->detailNews['news_code'] ?>">
                     <input type="hidden" name="news_id" value="<?= $this->detailNews['news_id'] ?>">
                     <!-- Submit Button -->
                     <input type="submit" name="submit" class="accent" value="Готово">
@@ -185,12 +186,12 @@
                     <div class="post">
                         <!-- Image Column -->
                         <div class="img-column">
-                            <a href="/news/<?= $news['cat_code']?>/<?= $news['news_id']?>" class="image-link mini"><img alt="" src="<?= $news['news_preview']?>" class="fullwidth"></a>
+                            <a href="/news/<?= $news['cat_code']?>/<?= $news['news_code']?>" class="image-link mini"><img alt="" src="<?= $news['news_preview']?>" class="fullwidth"></a>
                         </div>
                         <!-- Content Column -->
                         <div class="content-column">
                             <!-- Post Title -->
-                            <h3 class="sub-title"><a href="/news/<?= $news['cat_code']?>/<?= $news['news_id']?>"><?= $news['news_title']?></a></h3>
+                            <h3 class="sub-title"><a href="/news/<?= $news['cat_code']?>/<?= $news['news_code']?>"><?= $news['news_title']?></a></h3>
                             <!-- Date -->
                             <div class="date"><? $new_datetime = DateTime::createFromFormat ( "Y-m-d H:i:s", $news['news_date']);
                                 echo $new_datetime->format('d F Y'); ?></div>

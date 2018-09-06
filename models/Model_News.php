@@ -40,23 +40,23 @@ class Model_News extends Db {
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getNewsById($newsId) {                                   // получение отдельной новости по id
-        $sql = $this->connection->prepare("SELECT * FROM news WHERE news_id = :newsId");
-        $sql->bindParam(':newsId', $newsId, PDO::PARAM_INT);
+    public function getNewsByCode($newsCode) {                                   // получение отдельной новости по id
+        $sql = $this->connection->prepare("SELECT * FROM news WHERE news_code = :newsCode");
+        $sql->bindParam(':newsCode', $newsCode, PDO::PARAM_STR);
         $sql->execute();
 
         return $sql->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function setNewsViews($newsId) {                                  // увеличить значение количества просмотров на 1
-        $sql = $this->connection->prepare("UPDATE news SET news_views = (news_views + 1) WHERE news_id = :newsId");
-        $sql->bindParam(':newsId', $newsId, PDO::PARAM_INT);
+    public function setNewsViews($newsCode) {                                  // увеличить значение количества просмотров на 1
+        $sql = $this->connection->prepare("UPDATE news SET news_views = (news_views + 1) WHERE news_code = :newsCode");
+        $sql->bindParam(':newsCode', $newsCode, PDO::PARAM_STR);
         $sql->execute();
     }
 
-    public function getNewsComments($newsId) {
-        $sql = $this->connection->prepare("SELECT * FROM comments WHERE comments.news_id = :newsId");
-        $sql->bindParam(':newsId', $newsId, PDO::PARAM_INT);
+    public function getNewsComments($newsCode) {
+        $sql = $this->connection->prepare("SELECT * FROM comments INNER JOIN news ON comments.news_id = news.news_id WHERE news.news_code = :newsCode");
+        $sql->bindParam(':newsCode', $newsCode, PDO::PARAM_STR);
         $sql->execute();
 
         return $sql->fetchAll(PDO::FETCH_ASSOC);

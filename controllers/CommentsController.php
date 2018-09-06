@@ -39,7 +39,7 @@ class CommentsController extends Controller {
                 return $result = false;                                 // если форма не пришла или не со всеми данными, то ставим флаг false
             }
             $this->view->result = $result;
-            $this->view->newsId = $_POST['news_id'];                    // устанавливаем переменную для использования в ссылке
+            $this->view->newsCode = $_POST['news_code'];                    // устанавливаем переменную для использования в ссылке
 
             $this->view->generate('template_view.phtml', 'comments/index.phtml'); // формируем вьюшку
 

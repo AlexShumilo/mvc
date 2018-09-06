@@ -43,16 +43,16 @@ class NewsController extends Controller {
         return true;
     }
 
-    public function actionDetail($newsId) {                            // экшн для отображения детальной новости
+    public function actionDetail($newsCode) {                            // экшн для отображения детальной новости
         try {
 
-            $this->view->detailNews = $this->newsModel->getNewsById($newsId); // получаем строку новости по пришедшему в параметр newsId
+            $this->view->detailNews = $this->newsModel->getNewsByCode($newsCode); // получаем строку новости по пришедшему в параметр newsId
             $this->view->lastNews = $this->newsModel->getLastNews();          // получаем последние новости для правого сайдбара
             $this->view->categories = $this->categoriesModel->getCategories();// получаем категории для блока категорий
 
-            $this->newsModel->setNewsViews($newsId);                   // прибавляем единицу к полю счётчика просмотров новости
+            $this->newsModel->setNewsViews($newsCode);                   // прибавляем единицу к полю счётчика просмотров новости
 
-            $this->view->newsComments = $this->newsModel->getNewsComments($newsId);
+            $this->view->newsComments = $this->newsModel->getNewsComments($newsCode);
 
             $this->view->generate('template_view.phtml', 'news/detail.phtml');
         } catch (Exception $e) {

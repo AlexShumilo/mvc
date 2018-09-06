@@ -68,10 +68,10 @@
             <? foreach ($this->topNews as $news) :?>
                 <li class="column-one-fourth portfolio-item branding">
                 <!-- Image -->
-                    <a href="/news/<?= $news['cat_code']?>/<?= $news['news_id']?>" class="image-link"><img alt="" src="<?= $news['news_preview']?>" class="fullwidth">
+                    <a href="/news/<?= $news['cat_code']?>/<?= $news['news_code']?>" class="image-link"><img alt="" src="<?= $news['news_preview']?>" class="fullwidth">
                     </a>
                 <!-- Title -->
-                    <h3><a href="/news/detail/<?= $news['news_id']?>"><?= $news['news_title'] ?></a></h3>
+                    <h3><a href="/news/<?= $news['cat_code']?>/<?= $news['news_code']?>"><?= $news['news_title'] ?></a></h3>
                 <!-- Tags -->
                     <div class="tags"><?= $news['cat_name'] ?></div>
                 </li>
@@ -96,16 +96,16 @@
                     <? foreach ($this->lastNews as $news) :?>
                         <li class="column-one-fourth">
                         <!-- Image -->
-                            <a href="/news/<?= $news['cat_code']?>/<?= $news['news_id']?>" class="image-link"><img alt="" src="<?= $news['news_preview']?>" class="fullwidth"></a>
+                            <a href="/news/<?= $news['cat_code']?>/<?= $news['news_code']?>" class="image-link"><img alt="" src="<?= $news['news_preview']?>" class="fullwidth"></a>
                         <!-- Title -->
-                            <h3><a href="/news/<?= $news['cat_code']?>/<?= $news['news_id']?>"><?= $news['news_title'] ?></a></h3>
+                            <h3><a href="/news/<?= $news['cat_code']?>/<?= $news['news_code']?>"><?= $news['news_title'] ?></a></h3>
                         <!-- Date -->
                             <div class="date"><? $new_datetime = DateTime::createFromFormat ( "Y-m-d H:i:s", $news['news_date']);
                                 echo $new_datetime->format('d F Y'); ?></div>
                         <!-- Excerpt -->
                             <p><?= $news['news_short_content'] ?></p>
                         <!-- Read More Link -->
-                            <a href="/news/<?= $news['cat_code']?>/<?= $news['news_id']?>">Подробнее</a>
+                            <a href="/news/<?= $news['cat_code']?>/<?= $news['news_code']?>">Подробнее</a>
                         </li>
                     <? endforeach; ?>
 
