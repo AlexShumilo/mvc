@@ -20,7 +20,6 @@ class View {
         $this->content = $this->getRenderHTML('views/' . $mainView);
 
         include 'views/layouts/' . $templateView;
-
     }
     public function getRenderHTML($path) {
         ob_start();
@@ -50,9 +49,6 @@ class View {
             case 12: $m = 'декабря'; break;
         }
         echo $dateArr[0] ." ". $m ." ". $dateArr[2];
-
     }
-
 }
-
 ?>

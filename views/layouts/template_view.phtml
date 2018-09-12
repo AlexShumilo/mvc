@@ -89,7 +89,7 @@
             </div>
         </div>
     </div>
-    <? if ($_SERVER['REQUEST_URI'] == '/index/index' || $_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/index') : ?>
+    <? if ($_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/index') : ?>
     <div class="home-banner dark">
 
         <ul class="slider-container" id="home-slider">
@@ -185,28 +185,20 @@
     <div class="main-content">
         <?= $this->content ?>
     </div>
-
+    <? if ($_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/index') : ?>  <!-- если попали на главную страницу, то выводить следующий футер -->
     <div class="footer-container">
-
         <div class="spacer"></div>
-
         <div class="footer-infobar">
             <div class="content-width">
                 <!-- Text -->
                 Мы предоставляем только проверенную информацию. Все права защищены.
             </div>
         </div>
-
         <div class="footer">
             <div class="content-width">
-
-
                 <!-- Four Columns -->
-
                 <div class="column-container">
-
                     <div class="column-one-fourth">
-
                         <h3>Подписаться</h3>
                         <div class="footer-newsletter">
                             <form id="newsletter" name="newsletter" method="post" action="#">
@@ -216,38 +208,116 @@
                                 </div>
                             </form>
                         </div>
-
                     </div>
-
                 </div>
-
                 <div class="footer-lower-container">
-
                     <ul class="footer-lower">
-                        <li><a href="index.html">Главная</a>
+                        <li><a href="/index">Главная</a>
                         </li>
-                        <li><a href="about.html">О нас</a>
+                        <li><a href="/about">О нас</a>
                         </li>
                         <li><a href="portfolio.html">Проекты</a>
                         </li>
-                        <li><a href="blog.html">Новости</a>
+                        <li><a href="/news">Новости</a>
                         </li>
-                        <li><a href="contact.html">Контакты</a>
+                        <li><a href="/contact">Контакты</a>
                         </li>
                     </ul>
-
                     <div class="footer-copyright">
-                        &copy; 2016 | Wonde - универсальный бизнес шаблон сайта
+                        &copy; <?= date('Y')?> | Wonde - универсальный бизнес шаблон сайта
                     </div>
-
                 </div>
-
                 <a class="top-of-page-link" href="#"><i class="fa fa-chevron-up"></i></a>
-
             </div>
         </div>
-
     </div>
+
+    <? else : ?>                                            <!-- если попали не на главную страницу, то выводить следующий футер -->
+
+    <div class="footer">
+        <div class="content-width">
+            <!-- Four Columns -->
+            <div class="column-container">
+                <div class="column-one-fourth">
+                    <img alt="" src="\template\images\topbar\logo_white.png" height="17" width="57" class="logo">
+                    <p>Маркетингово-ориентированное издание, как следует из вышесказанного, редко соответствует рыночным ожиданиям.</p>
+                    <p>Психологическая среда, безусловно, порождает продуктовый ассортимент.</p>
+                    <p><a href="about.html">Читать далее</a>
+                    </p>
+                </div>
+                <div class="column-one-fourth">
+                    <img alt="" src="\template\images\topbar\logo_white.png" height="17" width="57" class="logo">
+                    <p>Маркетингово-ориентированное издание, как следует из вышесказанного, редко соответствует рыночным ожиданиям.</p>
+                    <p>Психологическая среда, безусловно, порождает продуктовый ассортимент.</p>
+                    <p><a href="about.html">Читать далее</a>
+                    </p>
+                </div>
+                <div class="column-one-fourth">
+                    <h3>Галерея</h3>
+                    <div class="footer-flickr-container">
+                        <? foreach ($this->footerGallery as $footerGalleryImage) :?>
+                            <div class='flickr_badge_image'>
+                                <a href='' target='_blank' class='image-link mini'>
+                                    <img src="<?= $footerGalleryImage['img_rout']?>" alt="">
+                                </a>
+                            </div>
+                        <? endforeach; ?>
+                    </div>
+                </div>
+                <div class="column-one-fourth">
+                    <h3>Подписаться</h3>
+                    <div class="footer-newsletter">
+                        <form id="newsletter" name="newsletter" method="post" action="#">
+                            <div class="container">
+                                <input type="text" name="name" class="textbox" placeholder="Email Address">
+                                <input type="submit" name="submit" id="submit" value="Готово" class="button">
+                            </div>
+                        </form>
+                    </div>
+                    <h3>Ждем Вас</h3>
+                    <ul class="footer-social">
+                        <li>
+                            <a href="#"><i class="fa fa-linkedin-square"></i><div class="tooltip">LinkedIn</div></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-facebook"></i><div class="tooltip">Facebook</div></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter"></i><div class="tooltip">Twitter</div></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-google-plus"></i><div class="tooltip">Google+</div></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-youtube"></i><div class="tooltip">YouTube</div></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-pinterest"></i><div class="tooltip">Pinterest</div></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-lower-container">
+                <ul class="footer-lower">
+                    <li><a href="/index">Главная</a>
+                    </li>
+                    <li><a href="/about">О нас</a>
+                    </li>
+                    <li><a href="/portfolio">Проекты</a>
+                    </li>
+                    <li><a href="/news">Новости</a>
+                    </li>
+                    <li><a href="/contact">Контакты</a>
+                    </li>
+                </ul>
+                <div class="footer-copyright">
+                    &copy; <?= date('Y')?> | Wonde - универсальный бизнес шаблон сайта
+                </div>
+            </div>
+            <a class="top-of-page-link" href="#"><i class="fa fa-chevron-up"></i></a>
+        </div>
+    </div>
+    <? endif ?>
 
 </div>
 

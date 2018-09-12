@@ -11,8 +11,7 @@ include_once ROOT . '/controllers/Controller.php';
 class IndexController extends Controller {
     private $newsModel;
 
-    function __construct()
-    {
+    function __construct() {
         parent::__construct();
         $this->newsModel = new Model_News();
     }
@@ -25,7 +24,6 @@ class IndexController extends Controller {
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-        return true;
     }
 }
 ?>

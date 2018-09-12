@@ -22,38 +22,39 @@ class Router {
     }
 
     function run() {
-        $uri = $this->getUri();
+        try {
+            $uri = $this->getUri();
+            ///news/sport
+            foreach ($this->routes as $uriPattern => $path) {
+                if (preg_match("~$uriPattern~", $uri)) {
+                    $internalRoute = preg_replace("~$uriPattern~", $path, $uri); // получаем строку адреса в нужном нам виде
 
-        foreach ($this->routes as $uriPattern => $path) {
-            if (preg_match("~$uriPattern~", $uri)) {
-                $internalRoute = preg_replace("~$uriPattern~", $path, $uri); // получаем строку адреса в нужном нам виде
+                    $segments = explode('/', $internalRoute); // разбиваем строку адреса на части в массив
 
-                $segments = explode('/', $internalRoute); // разбиваем строку адреса на части в массив
+                    $controllerName = ucfirst(array_shift($segments) . 'Controller'); // первый элемент массива берём в имя контроллера
 
-                $controllerName = ucfirst(array_shift($segments) . 'Controller'); // первый элемент массива берём в имя контроллера
+                    $actionName = 'action' . ucfirst(array_shift($segments)); // второй элемент массива берём в имя экшена-обработчика
 
-                $actionName = 'action' . ucfirst(array_shift($segments)); // второй элемент массива берём в имя экшена-обработчика
+                    $parameters = $segments;
 
-                $parameters = $segments;
+                    $controllerFile = ROOT . '/controllers/' . $controllerName . '.php';
 
-                $controllerFile = ROOT . '/controllers/' . $controllerName . '.php';
+                    if (file_exists($controllerFile)) {
+                        include_once($controllerFile);
+                    }
 
-                if (file_exists($controllerFile)) {
-                    include_once($controllerFile);
-                }
+                    $controllerObject = new $controllerName;
 
-                $controllerObject = new $controllerName;
+                    call_user_func_array([$controllerObject, $actionName], $parameters);
 
-                $result = call_user_func_array([$controllerObject, $actionName], $parameters);
-
-                if ($result != NULL) {
-                    break;
+                    exit();
                 }
             }
+        } catch (Exception $e) {
+            var_dump($e->getMessage());
         }
-
+        include ROOT . '/404.html';
     }
-
 }
 
 ?>

@@ -8,11 +8,15 @@
 
 return [
     'news/([a-zA-Z]+)/([a-zA-Z]+)' => 'news/detail/$2',
+    'news/search' => 'news/search',
     'news/([a-zA-Z]+)' => 'news/index/$1',
     'news' => 'news/index',
     'comment' => 'comments/index',
-    '[a-zA-Z]+' => 'index/index',
-    '' => 'index/index',
+    'about' => 'about/index',
+    'contact/contact' => 'contact/contact',
+    'contact' => 'contact/index',
+    'index' => 'index/index',
+    '^\s*$' => 'index/index',
 ];
 
 ?>

@@ -14,8 +14,7 @@ class NewsController extends Controller {
     private $newsModel;
     private $categoriesModel;
 
-    function __construct()
-    {
+    function __construct() {
         parent::__construct();                                          // вызываем констракт-метод родителя, в котором создаётся объект View
         $this->newsModel = new Model_News();                            // создаём объект модели новостей для взаимодействия с базой
         $this->categoriesModel = new Model_Categories();
@@ -29,23 +28,18 @@ class NewsController extends Controller {
                 $result = $this->newsModel->getCategoryNews($category); // если есть категория, то получаем новости по категории
             }
 
-            $lastNews = $this->newsModel->getLastNews();                // получаем последние новости для правого сайдбара
-
             $this->view->news = $result;
-            $this->view->lastNews = $lastNews;
+            $this->view->lastNews = $this->newsModel->getLastNews();                // получаем последние новости для правого сайдбара
             $this->view->categories = $this->categoriesModel->getCategories();
 
             $this->view->generate('template_view.phtml', 'news/index.phtml'); // формируем вьюшку
-
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-        return true;
     }
 
     public function actionDetail($newsCode) {                            // экшн для отображения детальной новости
         try {
-
             $this->view->detailNews = $this->newsModel->getNewsByCode($newsCode); // получаем строку новости по пришедшему в параметр newsId
             $this->view->lastNews = $this->newsModel->getLastNews();          // получаем последние новости для правого сайдбара
             $this->view->categories = $this->categoriesModel->getCategories();// получаем категории для блока категорий
@@ -58,7 +52,37 @@ class NewsController extends Controller {
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-        return true;
+    }
+
+    public function actionSearch() {
+        try {
+            function clean($value = "") {                               // очистка пришедших данных от ненужных символов
+                $value = trim($value);
+                $value = stripslashes($value);
+                $value = strip_tags($value);
+                $value = htmlspecialchars($value);
+
+                return $value;
+            }
+
+            if (isset($_POST['submit']) && isset($_POST['search'])) {
+                $_POST['search'] = clean($_POST['search']);               // если форма пришла, то получаем её безопасные данные
+
+                $result = $this->newsModel->getSearchNews($_POST['search']);
+            } else {
+                return $result = false;                                 // если форма не пришла или не со всеми данными, то ставим флаг false
+            }
+
+            $this->view->news = $result;
+
+            $this->view->lastNews = $this->newsModel->getLastNews();    // получаем последние новости для правого сайдбара
+            $this->view->categories = $this->categoriesModel->getCategories();
+
+            $this->view->generate('template_view.phtml', 'news/index.phtml'); // формируем вьюшку
+
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
 }

@@ -43,14 +43,9 @@ class CommentsController extends Controller {
             $this->view->categoryCode = $_POST['cat_code'];
 
             $this->view->generate('template_view.phtml', 'comments/index.phtml'); // формируем вьюшку
-
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-        return true;
     }
-
-
 }
-
 ?>
